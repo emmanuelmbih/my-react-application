@@ -16,10 +16,9 @@ COPY ./package.json /app/
 RUN npm install -g
 # If you are building your code for production
 # RUN npm install --only=production
-RUN npm build 
 
 # Bundle app source
-COPY . /app
+COPY . .
 
 # Build the final image using a nginx web server
 FROM nginx:alpine
