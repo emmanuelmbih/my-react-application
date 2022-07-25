@@ -13,7 +13,7 @@ ENV PATH /app/node_modules/.bin:PATH
 # where available (npm@5+)
 COPY ./package.json /app/
 
-RUN npm install -g /bin/sh -c
+# RUN npm install -g /bin/sh -c
 # If you are building your code for production
 # RUN npm install --only=production
 
