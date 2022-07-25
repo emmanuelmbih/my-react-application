@@ -14,16 +14,16 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/emmanuelmbih/my-react-application.git'
             }
         }
-        // // stage('Code Build') {
-        // //     steps {
-        // //         echo 'Build jar file'
-        // //         sh 'mvn clean install'
-        // //     }
-        // // }
-        // // stage('Run Unit Test') {
-        // //     steps {
-        // //         echo 'Run unit test'
-        // //         sh 'mvn test'
+        stage('Code Build') {
+            steps {
+                echo 'Build jar file'
+                sh 'npm --version'
+            }
+        }
+        // stage('Run Unit Test') {
+        //     steps {
+        //         echo 'Run unit test'
+        //         sh 'mvn test'
         //     }
         // }
         stage('Build Image') {
@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Build NodeApp') {
             steps {
-                nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
+                nodejs(nodeJSInstallationName: 'Node 16.x', configId: '<config-file-provider-id>') {
                     sh 'npm config ls'
                 }
             }
