@@ -22,11 +22,11 @@ COPY . .
 
 # Build the final image using a nginx web server
 FROM nginx:alpine
-COPY --from=build /app/build /usr/share/ngnix/html
+# COPY --from=build /app/build /usr/share/ngnix/html
 
 # need this to make React work properly
-RUN rm /etc/nginx/conf.d/default.conf 
-COPY nginx/nginx.conf /etc/nginx/conf.d 
+# RUN rm /etc/nginx/conf.d/default.conf 
+# COPY nginx/nginx.conf /etc/nginx/conf.d 
 
 EXPOSE 8080
 CMD [ "npm", "start" ]
