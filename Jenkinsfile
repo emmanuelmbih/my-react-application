@@ -14,26 +14,30 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/emmanuelmbih/my-react-application.git'
             }
         }
-        // stage('Code Build') {
-        //     steps {
-        //         echo 'Build jar file'
-        //         sh 'mvn clean install'
+        // // stage('Code Build') {
+        // //     steps {
+        // //         echo 'Build jar file'
+        // //         sh 'mvn clean install'
+        // //     }
+        // // }
+        // // stage('Run Unit Test') {
+        // //     steps {
+        // //         echo 'Run unit test'
+        // //         sh 'mvn test'
         //     }
         // }
-        // stage('Run Unit Test') {
-        //     steps {
-        //         echo 'Run unit test'
-        //         sh 'mvn test'
+        stage('Build Image') {
+            steps {
+                script{
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                } 
             }
         }
-        stage('Build Image') {
+        stage('Build NodeApp') {
             steps {
                 nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
                     sh 'npm config ls'
                 }
-                script{
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                } 
             }
         }
         stage('Deploy image') {
