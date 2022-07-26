@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:alpine16
 
 
 
@@ -18,10 +18,10 @@ COPY ./package.json /app/
 # RUN npm install --only=production
 
 # Bundle app source
-COPY . .
+COPY . /app
 
 # Build the final image using a nginx web server
-FROM nginx:alpine
+FROM nginx:alpine16
 # COPY --from=build /app/build /usr/share/ngnix/html
 
 # need this to make React work properly
